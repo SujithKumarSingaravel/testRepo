@@ -9,6 +9,10 @@ resources:
 - repo: self
 
 variables:
+  dockerRegistryServiceConnection: 'd3c870ea-81b7-4309-8c9d-028d12a1dbe1'
+  imageRepository: 'project'
+  containerRegistry: 'mycontrg.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
 stages:
@@ -24,7 +28,7 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        dockerfile: '$(dockerfilePath)/Dockerfile'
         tags: |
           $(tag)
 - stage: push
@@ -40,7 +44,6 @@ stages:
       inputs:
         command: push
         repository: $(imageRepository)
-        dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
