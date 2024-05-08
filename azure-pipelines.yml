@@ -17,28 +17,20 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build image
+  displayName: Build & push image 
   jobs:
   - job: Build
-    displayName: Build
+    displayName: Build & Push
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@1
+    - task: Docker@2
       displayName: Build an image
       inputs:
         command: build
         dockerfile: '$(dockerfilePath)/Dockerfile'
         tags: |
           $(tag)
-- stage: push
-  displayName: push stage
-  jobs:
-  - job: push
-    displayName: push
-    pool:
-      vmImage: $(vmImageName)
-    steps:
     - task: Docker@2
       displayName: push an image to container registry
       inputs:
