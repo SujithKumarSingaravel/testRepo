@@ -20,10 +20,10 @@ variables:
   vmImageName: 'ubuntu-latest'
 stages:
 - stage: Build
-  displayName: Build image & Deploy
+  displayName: Build image
   jobs:
   - job: Build
-    displayName: Build & Deploy
+    displayName: Build
     pool:
       vmImage: ubuntu-latest
     steps:
@@ -35,10 +35,10 @@ stages:
         Dockerfile: '**/Dockerfile'
 
 - stage: Push
-  displayName: Build image & Deploy
+  displayName: Push
   jobs:
   - job: Push
-    displayName: Push & Deploy
+    displayName: Push
     pool:
       vmImage: ubuntu-latest
     steps:
