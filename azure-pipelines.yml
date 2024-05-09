@@ -29,12 +29,12 @@ stages:
       inputs:
         command: build
         dockerfile: $(dockerfilePath)
-        tags: |
-          $(tag)
+        
     - task: Docker@2
       displayName: push an image to container registry
       inputs:
         command: push
         repository: $(imageRepository)
         containerRegistry: $(dockerRegistryServiceConnection)
-      
+        tags: |
+          $(tag)
