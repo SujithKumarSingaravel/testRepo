@@ -9,8 +9,8 @@ resources:
 - repo: self
 
 variables:
-  dockerRegistryServiceConnection: 'd3c870ea-81b7-4309-8c9d-028d12a1dbe1'
-  imageRepository: 'project'
+  dockerRegistryServiceConnection: 'SC-CR'
+  imageRepository: '$(Build.Repository.Name)'
   containerRegistry: 'mycontrg.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
