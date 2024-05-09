@@ -13,7 +13,7 @@ variables:
   imageRepository: 'project'
   containerRegistry: 'mycontrg.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.Repository.Name):$(Build.BuildId)'
+  tag: '$(Build.BuildId)'
 
 stages:
 - stage: Build
@@ -29,6 +29,8 @@ stages:
       inputs:
         command: build
         dockerfile: $(dockerfilePath)
+        repository: $(imageRepository)
+        containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
     - task: Docker@2
