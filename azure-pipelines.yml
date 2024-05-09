@@ -10,10 +10,10 @@ resources:
 
 variables:
   dockerRegistryServiceConnection: 'SC-CR'
-  imageRepository: '$(Build.Repository.Name):$(Build.BuildId)'
+  imageRepository: 'project'
   containerRegistry: 'mycontrg.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: '$(Build.Repository.Name):$(Build.BuildId)'
 
 stages:
 - stage: Build
@@ -29,7 +29,8 @@ stages:
       inputs:
         command: build
         dockerfile: $(dockerfilePath)
-        
+        tags: |
+          $(tag)
     - task: Docker@2
       displayName: push an image to container registry
       inputs:
