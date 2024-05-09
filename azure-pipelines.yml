@@ -28,7 +28,7 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        dockerfile: '$(dockerfilePath)/Dockerfile'
+        dockerfile: $(dockerfilePath)
         tags: |
           $(tag)
     - task: Docker@2
